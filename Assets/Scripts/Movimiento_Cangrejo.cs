@@ -9,6 +9,7 @@ public class Movimiento_Cangrejo : MonoBehaviour
     private Rigidbody2D Rigidbody2D;
     private Animator Animator;
     private float Horizontal;
+    //private bool Grounded;
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +27,16 @@ public class Movimiento_Cangrejo : MonoBehaviour
 
         Animator.SetBool("Running", Horizontal != 0.0f);
 
-        Debug.DrawRay(transform.position, Vector3.down * 0.1f, Color.red);
-
+        //Debug.DrawRay(transform.position, Vector3.down * 0.1f, Color.red);
+        //if (Physics2D.Raycast(transform.position, Vector3.down, 0.1f))
+        //{
+        //    Grounded = true;
+        //}
+        //else
+        //{
+        //    Grounded= false;
+        //}
+        //&& Grounded
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
