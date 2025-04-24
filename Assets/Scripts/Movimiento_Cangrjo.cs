@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movimiento_Cangrjo : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Movimiento_Cangrjo : MonoBehaviour
     private Animator Animator;
     private float Horizontal;
     private bool Grounded;
+    public bool Checkpoint = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,5 +51,28 @@ public class Movimiento_Cangrjo : MonoBehaviour
     private void FixedUpdate()
     {
         Rigidbody2D.velocity = new Vector2(Horizontal * Speed, Rigidbody2D.velocity.y);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Finish")
+        {
+            SceneManager.LoadScene("Menu");
+        }
+        if (collision.gameObject.tag == "Respawn")
+        {
+            Checkpoint = true;
+        }
+        if (collision.gameObject.tag == "Vacio")
+        {
+            if (Checkpoint == true)
+            {
+                SceneManager.LoadScene("Juego 1");
+            }
+            else
+            {
+                SceneManager.LoadScene("Juego");
+            }
+        }
     }
 }
